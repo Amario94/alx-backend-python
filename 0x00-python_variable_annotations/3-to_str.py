@@ -1,7 +1,9 @@
 #!/usr/bin/env python3
-'''takes str represenation of an argument n
+'''Module for task 3.
 '''
-def to_str(n: float)->str:
-    '''takes float n and return the str format
+
+
+def to_str(n: float) -> str:
+    '''Cast a floting type number in to a string.
     '''
     return str(n)

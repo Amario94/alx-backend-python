@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
-from typing import List
-'''function that takes a list input_list of floats
+'''Task 5's module.
 '''
+from typing import List
+
 
 def sum_list(input_list: List[float]) -> float:
-    '''sum_list that takes a list of floats as an
-       argument and returns their sum as a float:
-       '''
-    return sum(input_list)
+    '''Computes the sum of a list of floating-point numbers.
+    '''
+    return float(sum(input_list))
