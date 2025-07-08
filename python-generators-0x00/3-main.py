@@ -1,5 +1,6 @@
 #!/usr/bin/python3
 import sys
+# from lazy_paginate import lazy_paginate
 lazy_paginator = __import__('2-lazy_paginate').lazy_paginate
 
 
