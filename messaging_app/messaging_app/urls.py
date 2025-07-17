@@ -34,6 +34,7 @@ schema_view = get_schema_view(
 )
 urlpatterns = [
     path('admin/', admin.site.urls),
+    
     # path('api/', include('messaging_app.urls')),  # 👈 change 'your_app' to your actual app name
 
      # Swagger/OpenAPI URLs
