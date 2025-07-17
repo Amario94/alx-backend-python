@@ -1,26 +1,3 @@
-# from rest_framework import serializers
-# from .models import User, Conversation, Message
-
-# class UserSerializer(serializers.ModelSerializer):
-#     class Meta:
-#         model = User
-#         fields = ['id', 'username', 'email', 'first_name', 'last_name']
-
-# class MessageSerializer(serializers.ModelSerializer):
-#     sender = UserSerializer(read_only=True)
-
-#     class Meta:
-#         model = Message
-#         fields = ['id', 'sender', 'content', 'timestamp']
-
-# class ConversationSerializer(serializers.ModelSerializer):
-#     participants = UserSerializer(many=True, read_only=True)
-#     messages = MessageSerializer(many=True, read_only=True)
-
-#     class Meta:
-#         model = Conversation
-#         fields = ['id', 'participants', 'messages', 'created_at']
-
 from rest_framework import serializers
 from .models import Message, Conversation
 from django.contrib.auth import get_user_model
@@ -58,5 +35,5 @@ class ConversationSerializer(serializers.ModelSerializer):
     def validate(self, data):
         if 'participants' in self.initial_data:
             if len(self.initial_data['participants']) < 2:
-                raise ValidationError("A conversation must have at least two participants.")
+                raise serializers.ValidationError("A conversation must have at least two participants.")
         return data
