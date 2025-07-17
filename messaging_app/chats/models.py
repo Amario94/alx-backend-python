@@ -21,7 +21,7 @@ class User(AbstractUser):
         return f"{self.username} - {self.email}"
 
 class Conversation(models.Model):
-    user_id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    conversation_id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     participants = models.ManyToManyField('User', related_name='conversations')
     created_at = models.DateTimeField(auto_now_add=True)
 
@@ -30,12 +30,11 @@ class Conversation(models.Model):
 
 class Message(models.Model):
     message_id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
-    user_id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     conversation_id = models.ForeignKey(Conversation, on_delete=models.CASCADE, related_name='messages')
     sender = models.ForeignKey('User', on_delete=models.CASCADE, related_name='sent_messages')
     message_body = models.TextField()
-    sent_at = models.DateTimeField(auto_now_add=True)
-    timestamp = models.DateTimeField(auto_now_add=True)
+    sent_at = models.DateTimeField(auto_now=True)
+    timestamp = models.DateTimeField(auto_now=True)
 
     def __str__(self):
         return f"Message {self.message_id} from {self.sender}"

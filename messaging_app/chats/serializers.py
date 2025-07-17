@@ -42,7 +42,7 @@ class MessageSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Message
-        fields = ['message_id', 'conversation', 'sender', 'message_body', 'sent_time']
+        fields = "__all__"
 
     def get_sent_time(self, obj):
         return obj.sent_at.strftime("%Y-%m-%d %H:%M:%S")
