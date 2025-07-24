@@ -78,6 +78,7 @@ from django.contrib.auth import get_user_model
 import django_filters
 from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework.pagination import PageNumberPagination
+from .pagination import MessagePagination
 
 User = get_user_model()
 
@@ -117,8 +118,7 @@ class MessageFilter(django_filters.FilterSet):
         model = Message
         fields = ['sender', 'start_date', 'end_date']
 
-class MessagePagination(PageNumberPagination):
-    page_size = 20
+
 
 class MessageViewSet(viewsets.ModelViewSet):
     queryset = Message.objects.all().order_by('-sent_at')
