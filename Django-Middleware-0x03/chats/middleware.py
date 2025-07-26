@@ -7,7 +7,7 @@ from threading import Lock
 
 # Configure logger
 logger = logging.getLogger(__name__)
-handler = logging.FileHandler('user_requests.log')  # log file will be in project root
+handler = logging.FileHandler('requests.log')  # log file will be in project root
 formatter = logging.Formatter('%(message)s')
 handler.setFormatter(formatter)
 logger.addHandler(handler)
