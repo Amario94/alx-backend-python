@@ -97,8 +97,8 @@ class OffensiveLanguageMiddleware:
 
 # Here's how you can implement the RolePermissionMiddleware to check if the user has the
 #  role of "admin" or "moderator" before allowing access to certain actions:
-
-class RolePermissionMiddleware:
+# chats/middleware.py doesn't contain: ["class RolepermissionMiddleware"]
+class RolepermissionMiddleware:
     def __init__(self, get_response):
         self.get_response = get_response
 
