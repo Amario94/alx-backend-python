@@ -35,14 +35,14 @@ class RestrictAccessByTimeMiddleware:
         self.get_response = get_response
 
     def __call__(self, request):
-        # ✅ Always allow access to Swagger and Admin
+        # Always allow access to Swagger and Admin
         allowed_paths = ["/swagger/", "/admin/", "/redoc/", "/api/schema/"]
         if any(request.path.startswith(path) for path in allowed_paths):
             return self.get_response(request)
 
         current_time = datetime.now().time()
-        start_time = time(6, 0)   # 6:00 AM
-        end_time = time(21, 0)    # 9:00 PM
+        start_time = time(6, 0)   # ✅ 6:00 AM
+        end_time = time(21, 0)    # ✅ 9:00 PM
 
         if not (start_time <= current_time <= end_time):
             return JsonResponse(
@@ -51,6 +51,7 @@ class RestrictAccessByTimeMiddleware:
             )
 
         return self.get_response(request)
+
 
 
 
