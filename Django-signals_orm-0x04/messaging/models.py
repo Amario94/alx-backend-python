@@ -1,6 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
-from .managers import UnreadMessageManager
+from .managers import UnreadMessagesManager
 
 # class UnreadMessagesManager(models.Manager):
 #     def for_user(self, user):
@@ -15,7 +15,7 @@ class Message(models.Model):
     timestamp = models.DateTimeField(auto_now_add=True)
     read = models.BooleanField(default=False)  # 👈 New field to track if message is read
     objects = models.Manager()  # default manager
-    unread = UnreadMessageManager()  # 👈 custom manager
+    unread = UnreadMessagesManager()  # 👈 custom manager
 
 
     parent_message = models.ForeignKey(
