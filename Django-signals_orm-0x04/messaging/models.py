@@ -1,19 +1,21 @@
 from django.db import models
 from django.contrib.auth.models import User
+from .managers import UnreadMessageManager
 
-class UnreadMessagesManager(models.Manager):
-    def for_user(self, user):
-        return self.get_queryset().filter(recipient=user, read=False).only('id', 'sender', 'content', 'timestamp')
+# class UnreadMessagesManager(models.Manager):
+#     def for_user(self, user):
+#         return self.get_queryset().filter(recipient=user, read=False).only('id', 'sender', 'content', 'timestamp')
 
 class Message(models.Model):
     sender = models.ForeignKey(User, on_delete=models.CASCADE, related_name='sent_messages')
     receiver = models.ForeignKey(User, on_delete=models.CASCADE, related_name='received_messages')
     content = models.TextField()
     edited_message = models.BooleanField(default=False)
+    edited_by = models.ForeignKey(User, related_name='edited_messages', null=True, blank=True, on_delete=models.SET_NULL)
     timestamp = models.DateTimeField(auto_now_add=True)
     read = models.BooleanField(default=False)  # 👈 New field to track if message is read
     objects = models.Manager()  # default manager
-    unread = UnreadMessagesManager()  # 👈 custom manager
+    unread = UnreadMessageManager()  # 👈 custom manager
 
 
     parent_message = models.ForeignKey(
