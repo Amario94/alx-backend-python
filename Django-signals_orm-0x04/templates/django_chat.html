@@ -1,0 +1,10 @@
+<h3>Threaded Conversation</h3>
+<div>
+    <strong>{{ root_message.sender.username }}</strong>: {{ root_message.content }}
+</div>
+
+{% for reply in thread %}
+    <div style="margin-left: 30px;">
+        <strong>{{ reply.sender.username }}</strong>: {{ reply.content }}
+    </div>
+{% endfor %}

@@ -128,12 +128,6 @@ class MessageViewSet(viewsets.ModelViewSet):
     pagination_class = MessagePagination
     permission_classes = [permissions.IsAuthenticated, IsParticipantOfConversation]
 
-    # def get_queryset(self):
-    #     conversation_id = self.kwargs.get('conversation_pk')
-    #     return Message.objects.filter(
-    #         conversation_id=conversation_id,
-    #         conversation__participants=self.request.user
-    #     ).order_by('-sent_at')
     def get_queryset(self):
         if not self.request.user.is_authenticated:
             return Message.objects.none()  # No results for unauthenticated users

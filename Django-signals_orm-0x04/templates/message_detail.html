@@ -1,0 +1,24 @@
+<h2>Message</h2>
+<p>{{ message.content }}</p>
+{% if message.edited %}
+    <p><em>(Edited)</em></p>
+{% endif %}
+
+<h3>History</h3>
+<ul>
+  {% for hist in message.history.all %}
+    <li>{{ hist.edited_at }}: {{ hist.old_content }}</li>
+  {% empty %}
+    <li>No edit history.</li>
+  {% endfor %}
+</ul>
+
+
+<h2>Unread Messages</h2>
+<ul>
+  {% for msg in unread_messages %}
+    <li><strong>{{ msg.sender }}</strong>: {{ msg.content }} ({{ msg.timestamp }})</li>
+  {% empty %}
+    <li>No unread messages</li>
+  {% endfor %}
+</ul>
