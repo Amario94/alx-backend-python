@@ -5,7 +5,12 @@ pipeline {
         PYTHON_ENV = 'venv'
     }
 
-    stages {
+    stage('Install Dependencies') {
+    steps {
+        sh 'pip3 install -r requirements.txt'
+    }
+}
+
         stage('Clone Repo') {
             steps {
                 git credentialsId: 'github-creds', url: 'https://github.com/onebyte2016/alx-backend-python.git'
